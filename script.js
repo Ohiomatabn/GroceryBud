@@ -25,4 +25,8 @@ function addGrocery(){
     }
   }));
 
+  document.getElementById('clear').addEventListener('click', () =>{
+    groceryContianer.innerHTML = '';
+  })
+
 document.getElementById('add').addEventListener('click', addGrocery);
