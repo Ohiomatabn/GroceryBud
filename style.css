@@ -48,9 +48,9 @@ input:focus{
 }
 
 .grocery-list{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
-  align-items: center;
   font-size: 1.5rem;
   padding: 2rem 0;
 }
@@ -74,6 +74,10 @@ button{
 
 button:hover{
   background-color: rgba(0, 128, 0, .5);
+}
+
+.icons{
+  text-align: right;
 }
 
 .clear{
