@@ -14,24 +14,39 @@ function addGrocery(){
   const month = now.getMonth();
   const year = now.getFullYear();
 
+  //Check if the grocery name is not starting with a-z or A-Z 
+  if(!groceryName.match(/[/a-z/, /A-Z/]/)){
+    const modal = document.getElementById('modal');
+    //Set the innerHTML of modal if the condition above is met
+    modal.innerHTML = 'Please enter a valid Grocery name';
+    //Set the modal margin-top to 0
+    modal.style.marginTop = 0;
+    //Set the margin-top  to -7rem after 3 seconds
+    setTimeout(() =>{
+      modal.style.marginTop = '-7rem';
+    },3000)
+    
+  }
+  else{
   //Add this to groceryContainer as innerHTML
   groceryContianer.innerHTML += `
-        <div class="grocery-list">
-          <h3>${groceryName}</h3>
-          <h3>${date}/${ month}/${year}</h3>
-          <div class="icons">
-            <span>✔</span>
-            <span><img src="download-1.png" class="delete" alt="" /></span>
-          </div>
-        </div>
-  `;
+  <div class="grocery-list">
+    <h3>${groceryName}</h3>
+    <h3>${date}/${ month}/${year}</h3>
+    <div class="icons">
+      <span>✔</span>
+      <span><img src="download-1.png" class="delete" alt="" /></span>
+    </div>
+  </div>
+`;
+  }
     //Call saveToLocalStorage Function
   saveToLocalStorage();
 }
 
 //Add event listener to the grocery container
 groceryContianer.addEventListener('click', ((e) =>{
-  //If the tag name of the click area is groceryContainer execute this code
+  //If the tag name of the click area is IMG execute this code
     if(e.target.tagName === 'IMG'){
       //If the condition is true then remove the grand parent of this element
       e.target.parentElement.parentElement.parentElement.remove();
