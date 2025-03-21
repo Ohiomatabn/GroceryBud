@@ -35,7 +35,10 @@ function addGrocery(){
     <h3>${date}/${ month}/${year}</h3>
     <div class="icons">
       <span>✔</span>
-      <span><img src="download-1.png" class="delete" alt="" /></span>
+      <span>
+        <img false src="download-1.png" class="delete" alt="" />
+        <span class="hide">false</span>
+      </span>
     </div>
   </div>
 `;
@@ -44,21 +47,52 @@ function addGrocery(){
   saveToLocalStorage();
 }
 
-//Add event listener to the grocery container
-groceryContianer.addEventListener('click', ((e) =>{
-  //If the tag name of the click area is IMG execute this code
-    if(e.target.tagName === 'IMG'){
-      //If the condition is true then remove the grand parent of this element
-      e.target.parentElement.parentElement.parentElement.remove();
-    //Call saveToLocalStorage Function
-      saveToLocalStorage();
+function deleteModal(){
+  document.getElementById('delete-modal').style.display = 'flex';
+}
+
+function closeDeleteModal(){
+  document.getElementById('delete-modal').style.display = 'none';
+}
+
+function yesDelete(){
+  document.querySelectorAll('.hide').forEach((deleteE) =>{
+    if(deleteE.innerHTML === 'true'){
+    deleteE.parentElement.parentElement.parentElement.remove();
+    saveToLocalStorage();
+    closeDeleteModal();
+    } else{
+      return;
     }
-  }));
+  });
+
+}
+
+groceryContianer.addEventListener('click', (e) =>{
+  if (e.target.tagName === 'IMG'){
+    deleteModal();
+    e.target.parentElement.lastElementChild.innerHTML = 'true'
+  }
+});
+
+document.getElementById('no-btn').addEventListener('click', ()=> {
+  closeDeleteModal();
+  document.querySelectorAll('.hide').forEach((hide) =>{
+    hide.innerHTML = 'false'
+  })
+});
+
+document.getElementById('yes-btn').addEventListener('click', () =>{
+  yesDelete();
+})
 
   //Add event listener to the clear class
 document.getElementById('clear').addEventListener('click', () =>{
   // Change all the innerHTML of grocery container to an empty string
-    groceryContianer.innerHTML = '';
+    document.querySelectorAll('.hide').forEach((hide) =>{
+      hide.innerHTML = 'true';
+    });
+    deleteModal();
     //Call saveToLocalStorage Function
     saveToLocalStorage();
 });
