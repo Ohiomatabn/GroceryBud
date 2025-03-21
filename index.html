@@ -7,26 +7,35 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <div id="modal">Pleasse enter a name</div>
-      <h1>Grocery Bud</h1>
-      <div class="grocery-input">
-        <input
-          type="text"
-          placeholder="Enter a Grocery"
-          name="Grocery"
-          id="grocery-name"
-        />
-        <button type="submit" id="add">Add</button>
-      </div>
-      <div class="grocery-container">
-        <div class="grocery-list">
-          <h3>Name</h3>
-          <h3>Modified Date</h3>
-          <div class="icons"></div>
+    <div class="container body-background">
+      <div class="overlay">
+        <div id="modal">Pleasse enter a name</div>
+        <h1>Grocery Bud</h1>
+        <div class="grocery-input">
+          <input
+            type="text"
+            placeholder="Enter a Grocery"
+            name="Grocery"
+            id="grocery-name"
+          />
+          <button type="submit" id="add">Add</button>
         </div>
+        <div class="grocery-container">
+          <div class="grocery-list">
+            <h3>Name</h3>
+            <h3>Modified Date</h3>
+            <div class="icons"></div>
+          </div>
+        </div>
+        <div id="delete-modal">
+          <p>Are you sure you want to delete this item?</p>
+          <div>
+            <button id="no-btn" class="normal">No</button>
+            <button id="yes-btn" class="danger">Yes</button>
+          </div>
+        </div>
+        <p class="clear" id="clear"><span>Clear All</span></p>
       </div>
-      <p class="clear" id="clear"><span>Clear All</span></p>
     </div>
     <script src="script.js"></script>
   </body>
