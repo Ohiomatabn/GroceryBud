@@ -24,6 +24,7 @@ body{
   padding: 20px;
   margin: 20px;
   overflow: hidden;
+  position: relative;
 }
 
 h1{
@@ -94,7 +95,7 @@ button:hover{
   cursor: pointer;
 }
 
-#modal{
+#modal, #delete-modal{
   background-color: rgb(250, 50, 50);
   color: white;
   padding: 1rem;
@@ -103,4 +104,28 @@ button:hover{
   border-radius: .5rem;
   margin-top: -7rem;
   transition: 1s;
+}
+
+#delete-modal{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0%;
+  bottom: 0;
+}
+
+#delete-modal button{
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  margin: 2rem 5rem;
+}
+
+.danger{
+  background-color: red;
 }
