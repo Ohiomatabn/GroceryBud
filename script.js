@@ -32,7 +32,7 @@ function addGrocery(){
   groceryContianer.innerHTML += `
   <div class="grocery-list">
     <h3>${groceryName}</h3>
-    <h3>${date}/${ month}/${year}</h3>
+    <h3>${date}/${ month + 1}/${year}</h3>
     <div class="icons">
       <em class="edit">✍</em>
       <span>
