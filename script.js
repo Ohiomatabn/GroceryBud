@@ -34,7 +34,7 @@ function addGrocery(){
     <h3>${groceryName}</h3>
     <h3>${date}/${ month}/${year}</h3>
     <div class="icons">
-      <span>✔</span>
+      <em class="edit">✍</em>
       <span>
         <img false src="download-1.png" class="delete" alt="" />
         <span class="hide">false</span>
@@ -75,6 +75,15 @@ groceryContianer.addEventListener('click', (e) =>{
   }
 });
 
+groceryContianer.addEventListener('click', (e) =>{
+  const input = document.getElementById('grocery-name');
+  if (e.target.tagName === 'EM'){
+    e.target.parentElement.lastElementChild.lastElementChild.innerHTML = 'true'
+    input.value = e.target.parentElement.parentElement.firstElementChild.innerHTML;
+    document.getElementById('add').innerHTML = 'Modify'
+  }
+});
+
 document.getElementById('no-btn').addEventListener('click', ()=> {
   closeDeleteModal();
   document.querySelectorAll('.hide').forEach((hide) =>{
@@ -104,4 +113,19 @@ function saveToLocalStorage(){
 }
 
 //Add event listner to the add button
-document.getElementById('add').addEventListener('click', addGrocery);
+document.getElementById('add').addEventListener('click', () =>{
+  const input = document.getElementById('grocery-name');
+  if(document.getElementById('add').innerText === 'Add'){
+    addGrocery();
+  } else {
+    document.querySelectorAll('.hide').forEach((hide) =>{
+      if(hide.innerHTML === 'true'){
+          hide.innerHTML = 'false';
+          hide.parentElement.parentElement.parentElement.firstElementChild.innerHTML = input.value;
+          document.getElementById('add').innerHTML = 'Add'
+          input.value = '';
+          saveToLocalStorage();
+      }
+    });
+  }
+});
