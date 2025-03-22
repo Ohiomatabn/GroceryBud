@@ -47,17 +47,24 @@ function addGrocery(){
   saveToLocalStorage();
 }
 
+
+//Declare the deleteModal function
 function deleteModal(){
   document.getElementById('delete-modal').style.display = 'flex';
 }
 
+//Declare the CloseDeleteModal fucntion
 function closeDeleteModal(){
   document.getElementById('delete-modal').style.display = 'none';
 }
 
+//Declare the yeseDelete function
 function yesDelete(){
+  //Get all elements with the hide class and loop through it
   document.querySelectorAll('.hide').forEach((deleteE) =>{
+    //Check if any has it innerHTML strictly equal to true
     if(deleteE.innerHTML === 'true'){
+      //Get the grand parent of the element and remove it then saveToLocalSotarage and close the modal
     deleteE.parentElement.parentElement.parentElement.remove();
     saveToLocalStorage();
     closeDeleteModal();
@@ -68,30 +75,45 @@ function yesDelete(){
 
 }
 
+
+//Add event listeners to the groceryContainer
 groceryContianer.addEventListener('click', (e) =>{
+  //check if the click area tagname is IMG
   if (e.target.tagName === 'IMG'){
+    //call the delete modal
     deleteModal();
+    //Get the parentElement and the lastChild of parentelement and set it innerHTML to true
     e.target.parentElement.lastElementChild.innerHTML = 'true'
   }
 });
 
 groceryContianer.addEventListener('click', (e) =>{
   const input = document.getElementById('grocery-name');
+  //check if the click part is EM
   if (e.target.tagName === 'EM'){
+    //if so the prent grand child innerHTML to true
     e.target.parentElement.lastElementChild.lastElementChild.innerHTML = 'true'
+    //Set the value of the input to the grandparent first childElement innerHTML
     input.value = e.target.parentElement.parentElement.firstElementChild.innerHTML;
+    //change the add button to modify
     document.getElementById('add').innerHTML = 'Modify'
   }
 });
 
+//Add event listener to no button
 document.getElementById('no-btn').addEventListener('click', ()=> {
+  //close modal
   closeDeleteModal();
   document.querySelectorAll('.hide').forEach((hide) =>{
+    //set the innerHTM any element in hide class to false
     hide.innerHTML = 'false'
   })
 });
 
+
+//Add event listener to yes button
 document.getElementById('yes-btn').addEventListener('click', () =>{
+  //call the yesDelete Function
   yesDelete();
 })
 
