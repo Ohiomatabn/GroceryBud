@@ -129,3 +129,15 @@ button:hover{
 .danger{
   background-color: red;
 }
+
+.danger:hover{
+  background-color: rgba(255, 0, 0,.50);
+}
+
+.hide{
+  display: none;
+}
+
+.edit{
+  cursor: pointer;
+}
